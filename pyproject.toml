@@ -1,0 +1,68 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "edelcore"
+version = "0.4.0"
+description = "High-precision, zero-C-dependency astronomical and astrological calculation engine"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+    { name = "Giorgi Khunzakhishvili" }
+]
+keywords = [
+    "astronomy",
+    "astrology",
+    "ephemeris",
+    "planetary-positions",
+    "jpl",
+    "vsop87",
+    "celestial-mechanics",
+    "horoscope",
+    "sidereal",
+    "fixed-stars"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Scientific/Engineering :: Astronomy",
+    "Topic :: Software Development :: Libraries :: Python Modules"
+]
+dependencies = [
+    "numpy>=1.20.0"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "build",
+    "twine",
+    "mkdocs-material"
+]
+
+[project.scripts]
+edel = "edelcore.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/GioGeeoo/EdelCore"
+Documentation = "https://github.com/GioGeeoo/EdelCore#readme"
+Repository = "https://github.com/GioGeeoo/EdelCore.git"
+Issues = "https://github.com/GioGeeoo/EdelCore/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["edelcore*"]
+
+[tool.setuptools.package-data]
+edelcore = ["data/*"]

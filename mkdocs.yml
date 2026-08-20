@@ -1,0 +1,82 @@
+site_name: EdelCore
+site_description: High-Precision, Zero-Black-Box Astronomical & Astrological Computation Engine
+site_author: Giorgi Khunzakhishvili
+repo_url: https://github.com/GioGeeoo/EdelCore
+repo_name: GioGeeoo/EdelCore
+
+theme:
+  name: material
+  palette:
+    # Palette toggle for dark mode
+    - scheme: slate
+      primary: indigo
+      accent: deep purple
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+    # Palette toggle for light mode
+    - scheme: default
+      primary: indigo
+      accent: deep purple
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.arithmatex:
+      generic: true
+  - admonition
+  - pymdownx.details
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
+  - tables
+  - toc:
+      permalink: true
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+nav:
+  - Overview: index.md
+  - Installation: installation.md
+  - Quickstart: quickstart.md
+  - Cookbook & Recipes: cookbook.md
+  - Celestial Mechanics Guide:
+      - Time & Calendars: guide/time_and_calendars.md
+      - Ephemerides & Celestial Bodies: guide/ephemerides.md
+      - Astrometric Corrections & Optics: guide/corrections.md
+      - House Systems & Trigonometric Angles: guide/houses_and_angles.md
+      - Sidereal Zodiac & Ayanamshas: guide/sidereal.md
+      - Astronomical Event Search Engine: guide/event_search.md
+  - API Reference:
+      - Core Engine: api/engine.md
+      - Data Models & Enums: api/models.md
+      - Coordinate Transformations: api/coordinates.md
+  - Command Line Interface (CLI): cli.md
+  - Accuracy & Performance Benchmarks: benchmarks.md

@@ -1,0 +1,79 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Unit test / coverage
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# IDE / Editor configs
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# MkDocs site output
+site/
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# Ephemeris binary download caches
+*.spk
+*.se1
+!edelcore/data/*.bsp
+
+
+# Internal local-only benchmarks and outputs
+tests/internal_benchmark.py
+*benchmark_output*
+*.benchmark.log
+internal_benchmark*
+
