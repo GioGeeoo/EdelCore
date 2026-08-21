@@ -1,6 +1,6 @@
 # EdelCore
 
-[![PyPI version](https://img.shields.io/badge/pypi-v0.4.0-blue.svg)](https://pypi.org/project/edelcore/)
+[![PyPI version](https://img.shields.io/badge/pypi-v0.4.1-blue.svg)](https://pypi.org/project/edelcore/)
 [![Python Version](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.13%20%7C%203.14-blue)](https://pypi.org/project/edelcore/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Tests](https://img.shields.io/badge/tests-29%20passed-brightgreen.svg)]()
