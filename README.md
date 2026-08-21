@@ -1,9 +1,9 @@
 # EdelCore
 
-[![PyPI version](https://img.shields.io/badge/pypi-v0.3.1-blue.svg)](https://pypi.org/project/edelcore/)
+[![PyPI version](https://img.shields.io/badge/pypi-v0.4.0-blue.svg)](https://pypi.org/project/edelcore/)
 [![Python Version](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.13%20%7C%203.14-blue)](https://pypi.org/project/edelcore/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Tests](https://img.shields.io/badge/tests-28%20passed-brightgreen.svg)]()
+[![Tests](https://img.shields.io/badge/tests-29%20passed-brightgreen.svg)]()
 
 **High-precision, pure-Python ephemeris and astrological computation engine built on IAU 2000/2006 and NASA JPL standards, delivering sub-arcsecond accuracy with zero C dependencies.**
 
@@ -11,7 +11,7 @@
 
 ## Core Features
 
-- **Time Subsystem (`edelcore.time`)**: Gregorian/Julian calendars, high-precision $\Delta T$ (-3000 to +3000 CE), GMST, GAST, LMST, LAST.
+- **Time Subsystem (`edelcore.time`)**: Gregorian/Julian calendars, native timezone handling (`ZoneInfo`/`timezone`), high-precision $\Delta T$ (-3000 to +3000 CE), GMST, GAST, LMST, LAST.
 - **Celestial Mechanics & Ephemerides (`edelcore.ephem`)**:
   - Sun, Moon, Mercury, Venus, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto.
   - Asteroids & Centaurs: **Chiron**, **Ceres**, **Pallas**, **Juno**, **Vesta**.
@@ -39,15 +39,19 @@ pip install edelcore
 
 ## Quick Usage and Recipes
 
-### 1. Full Natal Chart Calculation
+### 1. Full Natal Chart Calculation (Supports Local Timezones & UTC)
 ```python
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
+from zoneinfo import ZoneInfo
 from edelcore import EdelEngine, Body, HouseSystem
 
 engine = EdelEngine()
 
+# Pass local timezone or UTC datetime
+dt = datetime(1980, 5, 15, 9, 30, 0, tzinfo=timezone(timedelta(hours=1)))
+
 chart = engine.calculate_chart(
-    dt_or_time=datetime(1980, 5, 15, 8, 30, 0),
+    dt_or_time=dt,
     lat_deg=51.5074,
     lon_deg=-0.1278,
     house_system=HouseSystem.PLACIDUS

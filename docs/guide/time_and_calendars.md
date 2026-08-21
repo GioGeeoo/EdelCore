@@ -76,17 +76,30 @@ $$\text{LAST} = (\text{GAST} + \lambda_{\text{geo}}) \pmod{360^\circ}$$
 
 ---
 
-## 4. Code Examples
+## 4. Timezone Handling & Code Examples
+
+EdelCore fully supports timezone-aware Python `datetime` objects (`zoneinfo`, `pytz`, and `datetime.timezone`).
 
 ```python
+from datetime import datetime, timezone, timedelta
+from zoneinfo import ZoneInfo
 from edelcore import EdelTime
 
-# Construct from datetime
-t = EdelTime.from_ymd_hms(2026, 8, 20, 21, 4, 0)
+# 1. Construct from timezone-aware datetime
+# Tbilisi time (UTC+4)
+dt_local = datetime(2026, 8, 20, 21, 4, 0, tzinfo=ZoneInfo("Asia/Tbilisi"))
+t1 = EdelTime.from_datetime(dt_local)
 
-print("Julian Day UT1:", t.jd_ut)
-print("Julian Day TT: ", t.jd_tt)
-print("Delta T:        ", t.delta_t, "seconds")
-print("GMST:           ", t.gmst(), "degrees")
-print("LMST (London):  ", t.lmst(-0.1278), "degrees")
+# 2. Equivalent UTC datetime
+dt_utc = datetime(2026, 8, 20, 17, 4, 0, tzinfo=timezone.utc)
+t2 = EdelTime.from_datetime(dt_utc)
+
+# Both yield the exact same Julian Day UT:
+assert t1.jd_ut == t2.jd_ut
+
+print("Julian Day UT1:", t1.jd_ut)
+print("Julian Day TT: ", t1.jd_tt)
+print("Delta T:        ", t1.delta_t, "seconds")
+print("GMST:           ", t1.gmst(), "degrees")
+print("LMST (Tbilisi): ", t1.lmst(44.7833), "degrees")
 ```

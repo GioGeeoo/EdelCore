@@ -9,14 +9,15 @@ This cookbook provides 9 copy-pasteable, production-ready scenarios covering com
 Calculate a complete natal chart, access planetary objects using string or enum keys, and display zodiac sign formatting, retrogradation, and speeds.
 
 ```python
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
+from zoneinfo import ZoneInfo
 from edelcore import EdelEngine, Body, HouseSystem
 
 # 1. Initialize calculation engine
 engine = EdelEngine()
 
-# 2. Compute natal chart for London
-dt = datetime(1980, 5, 15, 8, 30, 0)
+# 2. Compute natal chart for London using local timezone (BST is UTC+1)
+dt = datetime(1980, 5, 15, 9, 30, 0, tzinfo=timezone(timedelta(hours=1)))
 chart = engine.calculate_chart(
     dt_or_time=dt,
     lat_deg=51.5074,

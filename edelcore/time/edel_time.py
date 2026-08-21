@@ -32,13 +32,23 @@ class EdelTime:
         dt: datetime,
         delta_t_sec: float | None = None
     ) -> EdelTime:
-        """Create EdelTime from Python datetime (assumed UTC if naive)."""
-        year = dt.year
-        month = dt.month
-        day = dt.day
-        hour = dt.hour
-        minute = dt.minute
-        second = dt.second + dt.microsecond / 1_000_000.0
+        """
+        Create EdelTime from Python datetime.
+        If dt is timezone-aware (dt.tzinfo is not None), it is automatically converted to UTC.
+        If dt is naive, it is treated as UTC.
+        """
+        if dt.tzinfo is not None:
+            # Convert timezone-aware datetime to UTC
+            dt_utc = dt.astimezone(timezone.utc)
+        else:
+            dt_utc = dt
+
+        year = dt_utc.year
+        month = dt_utc.month
+        day = dt_utc.day
+        hour = dt_utc.hour
+        minute = dt_utc.minute
+        second = dt_utc.second + dt_utc.microsecond / 1_000_000.0
         jd_ut = cls.calendar_to_jd(year, month, day, hour, minute, second)
         return cls(jd_ut, delta_t_sec=delta_t_sec)
 

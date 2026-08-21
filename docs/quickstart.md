@@ -6,17 +6,29 @@ Get started with EdelCore in 5 minutes with common astronomical and astrological
 
 ## 1. Computing a Natal Astrological Chart
 
+EdelCore natively supports both **UTC** and **local timezones** (`zoneinfo`, `pytz`, or `timedelta`):
+
 ```python
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
+from zoneinfo import ZoneInfo
 from edelcore import EdelEngine, HouseSystem, Body
 
 # 1. Instantiate the unified engine
 engine = EdelEngine()
 
-# 2. Compute complete chart for New York City
-dt = datetime(1995, 10, 24, 14, 30, 0) # UTC
+# 2. Compute chart using local timezone (e.g., New York EDT / Tbilisi / Tokyo)
+# Example A: Using standard ZoneInfo
+dt_ny = datetime(1995, 10, 24, 10, 30, 0, tzinfo=ZoneInfo("America/New_York"))
+
+# Example B: Using UTC offset directly (e.g. UTC+4)
+dt_tbilisi = datetime(1995, 10, 24, 18, 30, 0, tzinfo=timezone(timedelta(hours=4)))
+
+# Example C: Naive datetime (treated as UTC)
+dt_utc = datetime(1995, 10, 24, 14, 30, 0)
+
+# Calculate chart - timezone is automatically converted to UTC internally
 chart = engine.calculate_chart(
-    dt_or_time=dt,
+    dt_or_time=dt_ny,
     lat_deg=40.7128,
     lon_deg=-74.0060,
     house_system=HouseSystem.PLACIDUS

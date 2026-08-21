@@ -53,3 +53,23 @@ def test_sidereal_time():
     lmst_london = t.lmst(0.0)
     lmst_ny = t.lmst(-74.0)
     assert math.isclose((lmst_london - 74.0) % 360.0, lmst_ny, abs_tol=1e-5)
+
+def test_timezone_aware_datetime_conversion():
+    from datetime import datetime, timezone, timedelta
+    
+    # 12:00 UTC
+    dt_utc = datetime(2026, 8, 21, 12, 0, 0, tzinfo=timezone.utc)
+    # 16:00 UTC+4 (Tbilisi time) is identical instant to 12:00 UTC
+    tz_tbilisi = timezone(timedelta(hours=4))
+    dt_tbilisi = datetime(2026, 8, 21, 16, 0, 0, tzinfo=tz_tbilisi)
+    # 08:00 UTC-4 (New York EDT) is identical instant to 12:00 UTC
+    tz_ny = timezone(timedelta(hours=-4))
+    dt_ny = datetime(2026, 8, 21, 8, 0, 0, tzinfo=tz_ny)
+
+    t_utc = EdelTime.from_datetime(dt_utc)
+    t_tbilisi = EdelTime.from_datetime(dt_tbilisi)
+    t_ny = EdelTime.from_datetime(dt_ny)
+
+    assert math.isclose(t_utc.jd_ut, t_tbilisi.jd_ut, abs_tol=1e-9)
+    assert math.isclose(t_utc.jd_ut, t_ny.jd_ut, abs_tol=1e-9)
+
